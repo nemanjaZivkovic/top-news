@@ -1,0 +1,14 @@
+@import '../../../scss/settings/settings';
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+	height: $header-height;
+    background-color: $color-black;
+    color: $color-gray-light;
+
+    ul {
+        display: flex;
+    }
+}

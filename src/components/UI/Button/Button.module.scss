@@ -1,0 +1,11 @@
+@import '../../../scss/settings/settings';
+
+.button {
+    display: flex;
+    justify-content: center;
+    text-transform: capitalize;
+    min-width: 80px;
+	&--attention {
+		border: 1px solid $color-brand;
+	}
+}

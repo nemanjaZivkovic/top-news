@@ -1,0 +1,15 @@
+@import '../../../scss/settings/settings';
+
+.link {
+    text-decoration: none;
+    text-transform: capitalize;
+	color: $color-link;
+    cursor: pointer;
+    
+    transition: color $base-transition-timing;
+
+	&:hover,
+	&:focus {
+		color: $color-link--hover;
+	}
+}
