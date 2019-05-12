@@ -4,3 +4,11 @@ export const languageSet = (languageCode) => ({
 	type: actionTypes.LANGUAGE_SET,
 	languageCode
 });
+
+export const languageDisableSet = () => ({
+	type: actionTypes.LANGUAGE_DISABLE_SET
+});
+
+export const languageDisableUnset = () => ({
+	type: actionTypes.LANGUAGE_DISABLE_UNSET
+});

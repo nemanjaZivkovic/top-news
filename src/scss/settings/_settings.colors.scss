@@ -3,7 +3,7 @@ $color-brand-highlight: lighten($color-brand, 20%);
 $color-brand-shadow: darken($color-brand, 10%);
 
 $color-black: #080808;
-
+$color-white: #e6e6e6;
 $color-gray: #666666;
 $color-gray-light: #cacaca;
 $color-gray-dark: #333333;
@@ -14,5 +14,7 @@ $color-title: $color-gray-dark;
 $color-link: $color-text;
 $color-link: $color-text;
 $color-link--hover: $color-brand;
+
+$color-headings: $color-black;
 
 $color-background: $color-gray-light;

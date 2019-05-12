@@ -8,13 +8,13 @@ function Header() {
 		<header className={classes.header}>
 			<ul>
 				<li>
-					<Link>top news</Link>
+					<Link to="/top-news">top news</Link>
 				</li>
 				<li>
-					<Link>categories</Link>
+					<Link to="/categories">categories</Link>
 				</li>
 				<li>
-					<Link>search</Link>
+					<Link to="/search">search</Link>
 				</li>
 			</ul>
 

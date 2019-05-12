@@ -1,0 +1,16 @@
+@import '../../scss/settings/settings';
+
+.card {
+    padding: 20px;
+    height: 200px;
+    background: $color-black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transition: transform .15s ease-in-out;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.2);
+    }
+}

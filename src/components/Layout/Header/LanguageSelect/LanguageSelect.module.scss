@@ -1,6 +1,9 @@
 //@import '../../../../scss/settings/settings';
 
 .languageSelect {
-    border: 1px solid white;
     display: flex;
+
+    button {
+        text-transform: uppercase;
+    }
 }
