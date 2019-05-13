@@ -1,8 +1,6 @@
-
-
 .ListBase {
 	display: grid;
-	grid-gap: 10px;
-	grid-row-gap: 45px;
-	grid-template-columns: repeat(auto-fill, minmax(280px, 0.7fr));
+	grid-gap: 7px;
+	grid-row-gap: 7px;
+	grid-template-columns: repeat(auto-fill, minmax(330px, 0.75fr));
 }

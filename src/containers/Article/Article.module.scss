@@ -1,0 +1,29 @@
+@import '../../scss/animations/animations.ui';
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	h1 {
+		margin-right: 0;
+	}
+
+	p {
+		margin-bottom: 30px;
+	}
+
+	button {
+		span {
+			margin-right: .32rem;
+		}
+		&:hover {
+			span {
+				//animation: bounce ease-in-out 1.2s;
+				@include bounce() {
+					animation: bounce ease-in-out 1.2s;
+					animation-iteration-count: infinite;
+				}
+			}
+		}
+	}
+}

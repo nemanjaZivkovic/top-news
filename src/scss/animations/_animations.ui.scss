@@ -1,0 +1,46 @@
+@mixin bounce($direction: 'right') {
+	$factor: 1;
+	$translate: translateX;
+
+	@if $direction 'right' {
+		$translate: translateX;
+	}
+	@if $direction 'left' {
+		$translate: translateX;
+		$factor: -1;
+	}
+
+	& {
+        @content;
+		@keyframes bounce {
+			0% {
+				transform: translateX(calc(#{$factor} * 0px));
+			}
+			50% {
+				transform: translateX(calc(#{$factor} * 0.2rem));
+			}
+			100% {
+				transform: translateX(calc(#{$factor} * 0px));
+			}
+		}
+	}
+}
+
+@mixin background-hover($color, $color-hover, $important: false) {
+	transition: background-color $timing-default;
+	@if $important {
+		background-color: $color !important;
+	} @else {
+		background-color: $color;
+	}
+
+	@include hover-state {
+		@if $important {
+			background-color: $color-hover !important;
+		} @else {
+			background-color: $color-hover;
+		}
+
+		@content;
+	}
+}

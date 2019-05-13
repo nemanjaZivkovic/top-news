@@ -12,7 +12,7 @@ function App() {
 				<Route path="/top-news" component={TopNews} />
 				<Route path="/categories" render={() => <div style={{ color: 'black' }}>Categories</div>} />
 				<Route path="/search" render={() => <div style={{ color: 'black' }}>Search</div>} />
-				<Route path="/article/:id" component={Article} />
+				<Route path="/article" component={Article} />
 				<Redirect to="/" />
 			</Switch>
 		</Layout>
