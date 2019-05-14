@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Link from '../../components/UI/Link/Link';
 import Accordion from '../../components/UI/Accordion/Accordion';
 import ArticleCard from '../ArticleCard/ArticleCard';
 import { getHeadlinesByCountry } from '../../services/newsService';
@@ -66,11 +67,18 @@ function CategoryWidget(props) {
 
 	return (
 		<div className={classes.container}>
-			<h1 onClick={() => setExpanded(!expanded)}>
-				<span className={classes.name}>{category}</span>{' '}
-				<i className={classes.expandIcon} style={{ transform: `rotate(${expanded ? -90 : 90}deg)` }}>
-					>
-				</i>
+			<h1>
+				{/* Category headline taking user to the specific category */}
+				<Link to={`/category/${category}`} wrapper={true}>
+					<span className={classes.name}>{category}</span>{' '}
+				</Link>
+				<span
+					className={classes.expandIcon}
+					onClick={() => setExpanded(!expanded)}
+					style={{ transform: `rotate(${expanded ? -90 : 90}deg)` }}
+				>
+					{'>'}
+				</span>
 			</h1>
 
 			<Accordion className={classes.accordion} expanded={expanded}>

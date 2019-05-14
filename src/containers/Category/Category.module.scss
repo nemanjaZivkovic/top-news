@@ -1,0 +1,19 @@
+@import '../../scss/animations/animations.ui';
+
+.container {
+	button {
+		margin-top: 1rem;
+		span {
+			margin-right: .32rem;
+		}
+		&:hover {
+			span {
+				//animation: bounce ease-in-out 1.2s;
+				@include bounce() {
+					animation: bounce ease-in-out 1.2s;
+					animation-iteration-count: infinite;
+				}
+			}
+		}
+	}
+}

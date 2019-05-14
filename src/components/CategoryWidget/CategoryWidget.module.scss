@@ -1,45 +1,41 @@
 @import '../../scss/settings/settings.colors';
 @import '../../scss/settings/settings.global';
 
-
 .container {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-bottom: 2rem;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	margin-bottom: 2rem;
 
 	h1 {
-        display: flex;
-        align-items: flex-start;
-        text-transform: capitalize;
-        vertical-align: center;
+		display: flex;
+		align-items: flex-start;
+		text-transform: capitalize;
+		vertical-align: center;
 
-        cursor: pointer;
-        .name{
-            margin-right: 1rem;
-        }
+		cursor: pointer;
+		.name {
+			margin-right: 1rem;
+		}
 		.expandIcon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid $color-white;
-            border-radius: 0;
-            height: 3rem;
-            width: 3rem;
-            transition: all .2s ease;
-        }
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border: 2px solid $color-white;
+			border-radius: 0;
+			height: 3rem;
+			width: 3rem;
+			transition: all .2s ease;
 
-        &:hover{
-            i {
-                border-top-right-radius: 50%;
-                border-bottom-right-radius: 50%;
-                border: 2px solid $color-gray-light;
-                background: rgba($color-white, .1);
-                color: $color-gray-light;
-                padding-left: .3rem;
-            }
-        }
-        
+			&:hover {
+				border-top-right-radius: 50%;
+				border-bottom-right-radius: 50%;
+				border: 2px solid $color-gray-light;
+				background: rgba($color-white, .1);
+				color: $color-gray-light;
+				padding-left: .3rem;
+			}
+		}
 	}
 	.accordion {
 		width: 100%;

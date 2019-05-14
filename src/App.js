@@ -4,6 +4,8 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import Article from './containers/Article/Article';
 import TopNews from './containers/TopNews/TopNews';
 import Categories from './containers/Categories/Categories';
+import Category from './containers/Category/Category';
+import Search from './containers/Search/Search';
 
 function App() {
 	return (
@@ -11,9 +13,10 @@ function App() {
 			<Switch>
 				<Route path="/top-news" component={TopNews} />
 				<Route path="/categories" component={Categories} />
-				<Route path="/search" render={() => <div style={{ color: 'black' }}>Search</div>} />
+				<Route path="/category/:category" component={Category} />
+				<Route path="/search" component={Search} />
 				<Route path="/article" component={Article} />
-				<Redirect to="/categories" />
+				<Redirect to="/top-new" />
 			</Switch>
 		</Layout>
 	);
