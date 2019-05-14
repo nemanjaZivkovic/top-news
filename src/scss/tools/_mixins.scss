@@ -4,7 +4,7 @@
 		position: absolute;
 		z-index: -1;
 		transition: all .1s ease-out;
-		background: linear-gradient(to $to, rgba($color-black, .9) 10%, rgba($color-black, .70) 50%, transparent 100%);
+		background: linear-gradient(to $to, rgba($color-black, .9) 10%, rgba($color-black, .70) 45%, transparent 100%);
 		@content;
 	}
 }

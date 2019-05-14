@@ -2,7 +2,6 @@
 @import '../../scss/tools/mixins';
 @import '../../scss/animations/animations.ui';
 
-
 .card {
 	position: relative;
 	display: flex;
@@ -24,7 +23,6 @@
 		transform: translateX(-50%);
 
 		transition: all .2s ease-out;
-
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -38,7 +36,7 @@
 		padding: 5px 10px;
 
 		transition: all .2s ease-out;
-		background: inherit;
+		background: rgba($color-black, 1);
 
 		@include underlay-gradient(bottom) {
 			left: 0;
@@ -56,25 +54,25 @@
 		padding: 5px 10px;
 
 		transition: all .2s ease-out;
-        background: inherit;
-        text-shadow: 1px 1px  $color-black;
+		background: inherit;
+		text-shadow: 1px 1px $color-black;
 		.moreCta {
 			position: absolute;
 			right: 0;
 			opacity: 0;
 			transform: translate(100%, calc(-100% - 10px));
+			padding-right: 2rem;
 
 			// icon ">" inside more button
 			span {
-				margin-left: .32rem;
-                //animation: bounce ease-in-out 1.2s;
-                @include bounce(){
-                    animation: bounce ease-in-out 1.2s;
-				    animation-iteration-count: infinite;
-                };
-            }
-            
-        }
+				margin-left: .4rem;
+				//animation: bounce ease-in-out 1.2s;
+				@include bounce() {
+					animation: bounce ease-in-out 1.2s;
+					animation-iteration-count: infinite;
+				}
+			}
+		}
 
 		@include underlay-gradient(top) {
 			left: 0;
@@ -86,14 +84,17 @@
 
 	// card hover styles
 	&:hover {
-		z-index: 100;
-		transform: scale(1.1);
-		width: calc(100% * 1.4);
 		box-shadow: 9px 7px 13px -5px rgba(0, 0, 0, 1);
 
+		// zoom effect of the main container on hover, works only if passed trough props
+		z-index: 100;
+		&:not(.no-zoom) {
+			transform: scale(1.1);
+			width: calc(100% * 1.33);
+		}
+
 		.title {
-            background: transparent;
-            // background gradient
+			background: rgba($color-black, 0);
 			&:before {
 				transform: translateY(0);
 			}
@@ -104,8 +105,8 @@
 			.moreCta {
 				opacity: 1;
 				transform: translate(0, calc(-100% - 10px));
-            }
-            // background gradient
+			}
+			// background gradient
 			&:before {
 				transform: translateY(-100%);
 			}
@@ -113,6 +114,7 @@
 
 		.image {
 			z-index: -1;
+
 			top: 0;
 			width: 100%;
 			height: 100%;

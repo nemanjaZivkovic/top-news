@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import Link from '../../components/UI/Link/Link';
 import { getHeadlinesByCountry } from '../../services/newsService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import GridList from '../../components/UI/GridList/GridList';
@@ -13,28 +12,21 @@ function TopNews(props) {
 	const [ articles, setArticles ] = useState([]);
 	const [ loading, setLoading ] = useState(true);
 
-	useEffect(() => {
-		setLoading(true);
-		getHeadlinesByCountry(selectedLanguage).then((resp) => resp.json()).then((resp) => {
-			console.log(resp);
-			setLoading(false);
-			setArticles(resp.articles);
-		});
-	}, [selectedLanguage]);
+	useEffect(
+		() => {
+			setLoading(true);
+			getHeadlinesByCountry({ countryCode: selectedLanguage }).then((resp) => resp.json()).then((resp) => {
+				console.log(resp);
+				setLoading(false);
+				setArticles(resp.articles);
+			});
+		},
+		[ selectedLanguage ]
+	);
 
 	const Articles = (
 		<GridList className={classes.articles}>
-			{articles.map((article, index) => (
-				<Link
-					to={{
-						pathname: `/article`,
-						state: article
-					}}
-					wrapper={true}
-				>
-					<ArticleCard key={index} data={article} />
-				</Link>
-			))}
+			{articles.map((article, index) => <ArticleCard key={index} data={article} hoverZoom />)}
 		</GridList>
 	);
 

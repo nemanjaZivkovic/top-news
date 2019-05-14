@@ -1,0 +1,109 @@
+@import '../../scss/settings/settings.colors';
+@import '../../scss/settings/settings.global';
+
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 2rem;
+
+	h1 {
+        display: flex;
+        align-items: flex-start;
+        text-transform: capitalize;
+        vertical-align: center;
+
+        cursor: pointer;
+        .name{
+            margin-right: 1rem;
+        }
+		.expandIcon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid $color-white;
+            border-radius: 0;
+            height: 3rem;
+            width: 3rem;
+            transition: all .2s ease;
+        }
+
+        &:hover{
+            i {
+                border-top-right-radius: 50%;
+                border-bottom-right-radius: 50%;
+                border: 2px solid $color-gray-light;
+                background: rgba($color-white, .1);
+                color: $color-gray-light;
+                padding-left: .3rem;
+            }
+        }
+        
+	}
+	.accordion {
+		width: 100%;
+	}
+
+	.carrouselWrapper {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+
+		.slidesNav {
+			position: absolute;
+			top: 0;
+			display: flex;
+			align-items: center;
+			height: 100%;
+			transition: all .2s ease;
+			padding: 0 10px;
+
+			background: rgba($color-black, .25);
+
+			font-size: 30px;
+			font-weight: 600;
+			cursor: pointer;
+
+			&:hover {
+				background: rgba($color-black, .7);
+				font-size: 50px;
+			}
+			&--prev {
+				transform: translateX(-100%);
+				left: 0;
+			}
+			&--next {
+				transform: translateX(100%);
+				right: 0;
+			}
+		}
+
+		//main wrapper hover
+		&:hover {
+			.slidesNav {
+				&--prev {
+					transform: translateX(0);
+					left: 0;
+
+					&[disabled] {
+						display: none;
+					}
+				}
+				&--next {
+					transform: translateX(0);
+					right: 0;
+
+					&[disabled] {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+
+	.article {
+		//height: 250px;
+		//width: 33%;
+	}
+}
