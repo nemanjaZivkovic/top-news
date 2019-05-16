@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import classes from './ArticleCard.module.scss';
 import Button from '../UI/Button/Button';
 import Link from '../../components/UI/Link/Link';
 import ConditionalTruncate from '../ConditionalTruncate/ConditionalTruncate';
+import { isMobile } from 'react-device-detect';
+import classes from './ArticleCard.module.scss';
 
 function ArticleCard(props) {
 	const { data, hoverZoom = false, className } = props;
@@ -17,7 +18,8 @@ function ArticleCard(props) {
 		setHovering(false);
 	};
 
-	const zoomClass = hoverZoom ? '' : classes['no-zoom'];
+	const zoomStyle = hoverZoom && !isMobile ? '' : classes['no-zoom'];
+	const moreButtonStyle = isMobile ? classes['no-more-transition'] : '';
 
 	return (
 		<Link
@@ -28,7 +30,7 @@ function ArticleCard(props) {
 			wrapper={true}
 		>
 			<article
-				className={[ classes.card, zoomClass, className ].join(' ')}
+				className={[ classes.card, zoomStyle, className ].join(' ')}
 				onMouseEnter={mouseEnterHandler}
 				onMouseLeave={mouseLeaveHandler}
 			>
@@ -45,7 +47,7 @@ function ArticleCard(props) {
 					<ConditionalTruncate condition={!hovering} lines={2}>
 						{data.description}
 					</ConditionalTruncate>
-					<Button className={classes.moreCta}>
+					<Button className={[classes.moreCta, moreButtonStyle].join(' ')}>
 						more <span>></span>
 					</Button>
 				</div>

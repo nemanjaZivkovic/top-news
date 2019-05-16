@@ -35,7 +35,7 @@ function TopNews(props) {
 	return loading ? (
 		<Loader/>
 	) : (
-		<div>
+		<div className={classes.container}>
 			<h1>Top news from {countryName}:</h1>
 			{Articles}
 		</div>

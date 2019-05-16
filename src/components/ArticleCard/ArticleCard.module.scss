@@ -61,7 +61,9 @@
 			position: absolute;
 			right: 0;
 			opacity: 0;
+
 			transform: translate(100%, calc(-100% - 10px));
+
 			padding-right: 2rem;
 
 			// icon ">" inside more button
@@ -72,6 +74,11 @@
 					animation: bounce ease-in-out 1.2s;
 					animation-iteration-count: infinite;
 				}
+			}
+
+			&.no-more-transition {
+				opacity: 1;
+				transform: translate(0, calc(-100% - 10px));
 			}
 		}
 

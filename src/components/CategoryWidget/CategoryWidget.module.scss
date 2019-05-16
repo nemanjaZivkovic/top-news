@@ -14,8 +14,8 @@
 		text-transform: capitalize;
 		vertical-align: center;
 
-		@media(max-width: 450px) {
-			font-size: 28px;
+		@media(max-width: 650px) {
+			font-size: 26px;
 		}
 
 		cursor: pointer;
@@ -28,13 +28,13 @@
 			justify-content: center;
 			border: 2px solid $color-white;
 			border-radius: 0;
-			height: 3rem;
-			width: 3rem;
+			height: 2.9rem;
+			width: 2.9rem;
 			transition: all .2s ease;
 
-			@media(max-width: 550px) {
-				height: 2.5rem;
-				width: 2.5rem;
+			@media(max-width: 650px) {
+				height: 2.3rem;
+				width: 2.3rem;
 			}
 
 			&:hover {
