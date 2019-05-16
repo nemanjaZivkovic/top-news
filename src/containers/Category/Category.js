@@ -4,6 +4,7 @@ import { getHeadlinesByCountry } from '../../services/newsService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import GridList from '../../components/UI/GridList/GridList';
 import Button from '../../components/UI/Button/Button';
+import Loader from '../../components/UI/Loader/Loader';
 import classes from './Category.module.scss';
 
 const categoryList = [ 'entertainment', 'general', 'health', 'science', 'sports', 'technology' ];
@@ -16,11 +17,11 @@ function Category(props) {
 	const categoryQuery = match.params.category;
 	useEffect(
 		() => {
-			console.log(props);
 			// if there is no matching category from queryParams route user to general categories
 			if (categoryQuery && categoryList.includes(categoryQuery)) {
 				setLoading(true);
-				getHeadlinesByCountry({ countryCode: selectedLanguage, category: categoryQuery })
+				// @TODO create load more component
+				getHeadlinesByCountry({ countryCode: selectedLanguage, category: categoryQuery, pageSize: 30 })
 					.then((resp) => resp.json())
 					.then((resp) => {
 						console.log(resp);
@@ -42,13 +43,12 @@ function Category(props) {
 
 	const countryName = countryLabels.find((country) => selectedLanguage === country.value).label;
 
-
 	const goBackClickHandler = () => {
 		history.goBack();
 	};
 
 	return loading ? (
-		<h1>loading</h1>
+		<Loader />
 	) : (
 		<div className={classes.container}>
 			<h1>

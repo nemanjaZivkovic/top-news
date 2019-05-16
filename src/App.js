@@ -7,7 +7,12 @@ import Categories from './containers/Categories/Categories';
 import Category from './containers/Category/Category';
 import Search from './containers/Search/Search';
 
-function App() {
+function App(props) {
+	const {history} = props;
+	
+	// as this is single page application we need to 'manually' scroll to top on each route change
+	history.listen(()=> window.scrollTo(0, 0));
+
 	return (
 		<Layout>
 			<Switch>
@@ -16,7 +21,7 @@ function App() {
 				<Route path="/category/:category" component={Category} />
 				<Route path="/search" component={Search} />
 				<Route path="/article" component={Article} />
-				<Redirect to="/top-new" />
+				<Redirect to="/top-news" />
 			</Switch>
 		</Layout>
 	);

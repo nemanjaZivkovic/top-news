@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link as LinkRouter } from 'react-router-dom';
+import { Link as LinkRouter, NavLink } from 'react-router-dom';
 import classes from './Link.module.scss';
-function Link({ children, className, wrapper, ...props }) {
+function Link({ children, className, wrapper, navlink, ...props }) {
 	const wrapperClass = wrapper ? classes['link--wrapper'] : '';
+	const LinkComponent = navlink ? NavLink : LinkRouter;
 	return (
-		<LinkRouter className={[ classes.link, wrapperClass, className ].join(' ')} {...props}>
+		<LinkComponent className={[ classes.link, wrapperClass, className ].join(' ')} {...props}>
 			{children}
-		</LinkRouter>
+		</LinkComponent>
 	);
 }
 

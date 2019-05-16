@@ -1,9 +1,21 @@
 //@import '../../../../scss/settings/settings';
 
 .languageSelect {
-    display: flex;
+	display: flex;
 
-    button {
-        text-transform: uppercase;
-    }
+	button {
+		text-transform: uppercase;
+	}
+
+	@media (max-width: 600px) {
+		flex-direction: column;
+		button {
+			min-width: 60px;
+		}
+	}
+	@media (max-width: 400px) {
+		button {
+			min-width: 40px;
+		}
+	}
 }

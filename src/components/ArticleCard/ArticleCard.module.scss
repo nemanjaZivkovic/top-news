@@ -13,12 +13,13 @@
 
 	transition: all .12s ease-in;
 	cursor: pointer;
+	max-width: 100%;
 
 	.image {
 		position: absolute;
 		top: 1.5em;
 		left: 50%;
-		width: calc(100%);
+		width: 100%;
 		height: calc(100% - 3rem);
 		transform: translateX(-50%);
 

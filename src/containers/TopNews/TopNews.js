@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getHeadlinesByCountry } from '../../services/newsService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import GridList from '../../components/UI/GridList/GridList';
+import Loader from '../../components/UI/Loader/Loader';
 import classes from './TopNews.module.scss';
 
 const countryLabels = [ { value: 'GB', label: 'Great Britain' }, { value: 'US', label: 'United States' } ];
@@ -16,7 +17,6 @@ function TopNews(props) {
 		() => {
 			setLoading(true);
 			getHeadlinesByCountry({ countryCode: selectedLanguage }).then((resp) => resp.json()).then((resp) => {
-				console.log(resp);
 				setLoading(false);
 				setArticles(resp.articles);
 			});
@@ -33,7 +33,7 @@ function TopNews(props) {
 	const countryName = countryLabels.find((country) => selectedLanguage === country.value).label;
 
 	return loading ? (
-		<h1>loading</h1>
+		<Loader/>
 	) : (
 		<div>
 			<h1>Top news from {countryName}:</h1>

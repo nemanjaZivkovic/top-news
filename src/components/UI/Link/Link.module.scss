@@ -3,6 +3,7 @@
 .link {
 	text-decoration: none;
 	color: inherit;
+
 	&:not(.link--wrapper) {
 		text-transform: capitalize;
 		color: $color-link;

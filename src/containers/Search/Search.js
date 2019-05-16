@@ -1,76 +1,75 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import WindowSizeListener from 'react-window-size-listener';
 import { getHeadlinesByCountry } from '../../services/newsService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import GridList from '../../components/UI/GridList/GridList';
 import Button from '../../components/UI/Button/Button';
 import { useFormInput } from '../../customHooks/formInput';
+import SearchIcon from '../../assets/icons/search-512.png';
+import Loader from '../../components/UI/Loader/Loader';
 import classes from './Search.module.scss';
 
 const countryLabels = [ { value: 'GB', label: 'Great Britain' }, { value: 'US', label: 'United States' } ];
 
+// check query params for "q" (query). So if a user wants to bookmark or share his search "q" will store his search term
+const params = new URLSearchParams(window.location.search);
+const queryParam = params.get('q');
+
 function Search(props) {
-	const { selectedLanguage, history, location } = props;
+	const { selectedLanguage, history } = props;
 	const [ articles, setArticles ] = useState(null);
+	const [ iconOnly, setIconOnly ] = useState(false);
 	const [ loading, setLoading ] = useState(false);
-	const isFirstRun = useRef(true);
+
 	const queryInput = useFormInput({
-		defaultValue: '',
+		defaultValue: queryParam || '',
 		rules: { minLength: 2, maxLength: 20, required: true }
 	});
 
-	useEffect(()=>{
-		console.log('location', location);
-		const params = new URLSearchParams(location.search);
-		const queryParam = params.get('q');
-		if(queryParam){
-			console.log(queryParam);
-			queryInput.setValue(queryParam);
-		}
-	},[])
+	const isSubmittable = !loading && queryInput.value.trim() && !queryInput.error;
 
-	// observe query change
-	useEffect(
-		() => {
-				console.log('query on change');
-				fetchCategories();
-		},
-		[ location.search ]
-	);
+	// initial load check for "q" query param, if there is any (maybe user bookmarked search res or got shared search link) fetch those articles
+	useEffect(() => {
+		if (queryParam) {
+			fetchCategories(queryParam);
+		}
+	}, []);
 
 	// observe language change
-/* 	useEffect(
+	useEffect(
 		() => {
-			console.log('language fetching');
-
-			if (queryInput.value) {
-				console.log('language fetching success');
-
-				fetchCategories();
+			if (isSubmittable) {
+				fetchCategories(queryInput.value);
 			}
 		},
 		[ selectedLanguage ]
-	); */
+	);
 
-	const updateQuery = () => {
-		history.push(`/search?q=${queryInput.value.trim()}`);
+	const setQueryParam = (term) => {
+		history.push(`/search?q=${term.trim()}`);
 	};
 
-	function fetchCategories() {
-		console.log('Fetching');
+	function fetchCategories(term) {
 		setLoading(true);
-		getHeadlinesByCountry({ countryCode: selectedLanguage, term: queryInput.value })
-			.then((resp) => resp.json())
-			.then((resp) => {
-				setArticles(resp.articles);
-				setLoading(false);
-				if (resp.status === 'error') {
-					queryInput.setError(resp.message);
-				} else {
-					updateQuery();
-				}
-			});
+		getHeadlinesByCountry({ countryCode: selectedLanguage, term }).then((resp) => resp.json()).then((resp) => {
+			setArticles(resp.articles);
+			setLoading(false);
+			if (resp.status === 'error') {
+				queryInput.setError(resp.message);
+			} else {
+				setQueryParam(term);
+			}
+		});
 	}
+
+	const submitHandle = (e) => {
+		e.preventDefault();
+
+		if (isSubmittable) {
+			fetchCategories(queryInput.value);
+		}
+	};
 
 	const Articles = () => {
 		let content;
@@ -94,28 +93,27 @@ function Search(props) {
 		return content;
 	};
 
-	const submitHandle = (e) => {
-		e.preventDefault();
-
-		if (!queryInput.error) {
-			fetchCategories();
-		}
-	};
+	const Search = <img src={SearchIcon} alt="search" />;
 
 	const countryName = countryLabels.find((country) => selectedLanguage === country.value).label;
 
 	return (
 		<div className={classes.container}>
-			{JSON.stringify(queryInput.touched)}
 			<h1>Search top news from {countryName}:</h1>
 			<form onSubmit={submitHandle}>
 				<input autoFocus type="search" placeholder="What would you like to know" {...queryInput} />
-				<Button className={classes.query} disabled={Boolean(queryInput.error) || loading}>
-					search
+				<Button className={classes.query} disabled={!isSubmittable}>
+					{iconOnly ? null : 'search'}
+					{Search}
+					<WindowSizeListener
+						onResize={({ windowWidth }) => {
+							setIconOnly(windowWidth < 750 ? true : false);
+						}}
+					/>
 				</Button>
 				<span className={classes.error}>{queryInput.error}</span>
 			</form>
-			{loading ? <h1>loading</h1> : Articles()}
+			{loading ? <Loader/> : Articles()}
 		</div>
 	);
 }
