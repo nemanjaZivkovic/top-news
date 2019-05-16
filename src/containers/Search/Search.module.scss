@@ -1,11 +1,19 @@
 @import '../../scss/animations/animations.ui';
 @import '../../scss/settings/settings.colors';
 
-
 .container {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	h1 {
+		@media (max-width: 750px) {
+			font-size: 20px;
+			margin: {
+				bottom: 0.5rem;
+			}
+		}
+	}
+
 	form {
 		position: relative;
 		display: flex;
@@ -18,10 +26,10 @@
 			right: auto;
 		}
 
-		@media(max-width: 750px) {
+		@media (max-width: 750px) {
 			font-size: 18px;
 			margin: {
-				bottom: 3rem;
+				bottom: 1.1rem;
 			}
 		}
 
@@ -38,10 +46,12 @@
 			color: $color-white;
 			background: $color-black;
 			border: 1px solid $color-gray;
-			&:focus{
+			&:focus {
 				outline: none;
 				border: 1px solid $color-white;
 			}
+
+
 		}
 
 		button.query {
@@ -56,7 +66,7 @@
 				margin-left: 0.2rem;
 			}
 
-			@media(max-width: 750px) {
+			@media (max-width: 750px) {
 				padding: {
 					left: 5px;
 					right: 5px;
@@ -76,7 +86,7 @@
 		}
 	}
 
-	.noResults{
+	.noResults {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -85,12 +95,10 @@
 		color: $color-gray;
 		margin: 0 auto;
 		text-align: center;
-		span{
-			font-size:50px;
+		span {
+			font-size: 50px;
 			color: $color-gray-light;
-			transform: rotate(90deg)
+			transform: rotate(90deg);
 		}
 	}
-
-
 }

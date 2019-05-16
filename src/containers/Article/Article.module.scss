@@ -6,6 +6,13 @@
 	align-items: flex-start;
 	h1 {
 		margin-right: 0;
+
+		@media(max-width: 750px) {
+			font-size: 20px;
+			margin: {
+				bottom: 2rem;
+			}
+		}
 	}
 
 	p {
